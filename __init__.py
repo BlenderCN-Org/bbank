@@ -32,11 +32,13 @@ def register():
     bpy.utils.register_module(__package__)
     bpy.types.WindowManager.xd = bpy.props.PointerProperty(type=sess.xdSession)
 
-    #commented out the next 4 because they seem hackish for now...
-    #bpy.types.VIEW3D_HT_header.prepend(ui.button.for_splitting_the_viewport_with_an_img_editor)
-    #bpy.types.TIME_HT_header.prepend(ui.button.for_changing_the_timeline_into_userprefs)
-    #km = bpy.context.window_manager.keyconfigs.active.keymaps['3D View'].keymap_items.new
-    #km('xd.bank',type='NUMPAD_ASTERIX',value='PRESS')
+    bpy.types.VIEW3D_HT_header.prepend(
+            ui.button.for_splitting_the_viewport_with_an_img_editor)
+    bpy.types.TIME_HT_header.prepend(
+            ui.button.for_changing_the_timeline_into_userprefs)
+    kc = bpy.context.window_manager.keyconfigs.active
+    km = kc.keymaps['3D View'].keymap_items.new
+    km('xd.bank',type='NUMPAD_ASTERIX',value='PRESS')
 
 def unregister():
     del bpy.types.WindowManager.xd

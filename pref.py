@@ -9,13 +9,16 @@ import bpy
 import os
 
 _suffix = ".xdb"
+MYPATH = bpy.utils.user_resource("DATAFILES",path=__package__,create=True)
+
 
 class xdAddonPrefs(bpy.types.AddonPreferences):
     bl_idname = __package__
-    location = bpy.props.StringProperty(default=bpy.utils.user_resource("DATAFILES",path=__package__,create=True))
+    location = bpy.props.StringProperty(default=MYPATH)
     filename = bpy.props.StringProperty(default="default")
     auto = bpy.props.BoolProperty()
-    dbfile = property(fget=lambda s:os.path.join(s.location,s.filename+_suffix))
+    dbfile = property(
+            fget=lambda s:os.path.join(s.location,s.filename+_suffix))
     def draw(self,context):
         xd = context.window_manager.xd
         layout = self.layout
@@ -32,3 +35,4 @@ class xdAddonPrefs(bpy.types.AddonPreferences):
         exists = os.path.isfile(self.dbfile)
         box.label(self.dbfile,icon=["QUESTION","FILE_TICK"][exists])
         box.operator("xd.database_delete",icon="X") if exists else None
+

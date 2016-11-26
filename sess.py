@@ -5,10 +5,14 @@ import bpy
 from . import xddb
 from . import header
 from . import updates
+
 from .cats import cats,asset_icons
 
 # must maintain references to the types while they are inactive
-hidden_while_active = list((panel for panel in bpy.types.Panel.__subclasses__() if (hasattr(panel,"bl_space_type") and getattr(panel,"bl_space_type") == "USER_PREFERENCES")))
+hidden_while_active = list(
+        (panel for panel in bpy.types.Panel.__subclasses__() if
+            (hasattr(panel,"bl_space_type") and
+                getattr(panel,"bl_space_type") == "USER_PREFERENCES")))
 
 # keep the draw function of the header also, so can set it back
 original_header_draw = bpy.types.USERPREF_HT_header.draw
@@ -35,8 +39,13 @@ original_header_draw = bpy.types.USERPREF_HT_header.draw
 # an update which loads the data
 #
 def ui_toggle(self,context):
-    list(map([bpy.utils.register_class,bpy.utils.unregister_class][self.activate],hidden_while_active))
-    bpy.types.USERPREF_HT_header.draw = [original_header_draw,header.draw][self.activate]
+    list(
+            map(
+                [bpy.utils.register_class,
+                    bpy.utils.unregister_class][self.activate],
+                hidden_while_active))
+    bpy.types.USERPREF_HT_header.draw = [
+            original_header_draw,header.draw][self.activate]
     if self.activate:
         if not self.cx:
             xddb.init_on(context.user_preferences.addons[__package__].preferences.dbfile)

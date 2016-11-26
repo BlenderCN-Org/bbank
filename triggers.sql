@@ -12,3 +12,4 @@ create trigger if not exists blend_exclusion_update after update of exclude on b
     begin
         update assets set exclude=NEW.exclude where blend_id=NEW.id;
     end;
+

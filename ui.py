@@ -7,6 +7,7 @@ from . import button
 
 from .infotxt import infotxt
 
+
 class xdModalPane:
     bl_space_type = "USER_PREFERENCES"
     bl_region_type = "WINDOW"
@@ -16,6 +17,7 @@ class xdModalPane:
     def poll(self,context):
         return context.window_manager.xd.activate and context.window_manager.xd.view_mode == self.xd_mode
 
+
 class XD_MT_library_menu(bpy.types.Menu):
     bl_idname = "XD_MT_library_menu"
     bl_label = "Library"
@@ -23,6 +25,7 @@ class XD_MT_library_menu(bpy.types.Menu):
         layout = self.layout
         layout.operator("xd.add_library",text="Add Library...",icon="ZOOMIN")
     
+
 class XD_PT_libraries(bpy.types.Panel,xdModalPane):
     xd_mode = "LIBRARY"
     bl_options = set()
@@ -37,6 +40,7 @@ class XD_PT_libraries(bpy.types.Panel,xdModalPane):
         elif context.window_manager.xd.layout.libraries == "LIST":
             display.ls_libraries(self.layout,context)
       
+
 class XD_PT_paths(bpy.types.Panel,xdModalPane):
     xd_mode = "PATH"
     def draw(self,context):
@@ -47,6 +51,7 @@ class XD_PT_paths(bpy.types.Panel,xdModalPane):
             display.blends(split.column(),context)
         elif context.window_manager.xd.layout.paths == "LIST":
             display.ls_paths(self.layout,context)
+
 
 class XD_PT_blends(bpy.types.Panel,xdModalPane):
     xd_mode = "BLEND"
@@ -59,6 +64,7 @@ class XD_PT_blends(bpy.types.Panel,xdModalPane):
         elif context.window_manager.xd.layout.blends == "LIST":
             display.ls_blends(self.layout,context)
 
+
 class XD_PT_assets(bpy.types.Panel,xdModalPane):
     xd_mode = "ASSET"
     def draw(self,context):
@@ -70,10 +76,12 @@ class XD_PT_assets(bpy.types.Panel,xdModalPane):
         elif context.window_manager.xd.layout.assets == "LIST":
             display.ls_assets(self.layout,context)
 
+
 class XD_PT_categories(bpy.types.Panel,xdModalPane):
     xd_mode = "CATEGORY"
     def draw(self,context):
         display.category(self.layout,context)
+
 
 class XD_PT_banks(bpy.types.Panel,xdModalPane):
     xd_mode = "BANK"
@@ -91,11 +99,13 @@ class XD_PT_banks(bpy.types.Panel,xdModalPane):
         for b,s,a,i in context.window_manager.xd.cx.execute("select banks.bank,banks.slot,assets.name,assets.id from banks join assets on banks.asset_id=assets.id"):
             r[b][s][0].operator("xd.load_asset",text=a,icon="LIBRARY_DATA_DIRECT").asset_id = i
 
+
 class XD_PT_notes(bpy.types.Panel,xdModalPane):
     xd_mode = "NOTE"
     def draw(self,context):
         layout = self.layout
         display.notes(layout,context)
+
 
 class XD_PT_info(bpy.types.Panel,xdModalPane):
     xd_mode = "INFO"
@@ -106,3 +116,4 @@ class XD_PT_info(bpy.types.Panel,xdModalPane):
         col.label("Information",icon="QUESTION")
         col = split.column()
         list(map(col.label,infotxt))
+
