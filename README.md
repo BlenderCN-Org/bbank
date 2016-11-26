@@ -1,6 +1,6 @@
 #golly gee willikers i can't beleive this old thing still functions
 
-[![pic](https://i.vimeocdn.com/video/604702475.jpg)](https://vimeo.com/193113619]
+[![pic](https://i.vimeocdn.com/video/604702475.jpg)](https://vimeo.com/193113619)]
 
 ##### old txt from way way back:
 
