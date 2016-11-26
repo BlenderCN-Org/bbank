@@ -1,7 +1,6 @@
 #golly gee willikers i can't beleive this old thing still functions
 
-<iframe src="https://player.vimeo.com/video/193113619" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-<p><a href="https://vimeo.com/193113619">bbank pre-revival inspection</a> from <a href="https://vimeo.com/bpygram">shams kitz</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+[![bbank pre-revival inspection](https://i.vimeocdn.com/video/604702475.jpg)](https://vimeo.com/193113619 "bbank pre-revival inspection"]
 
 ##### old txt from way way back:
 
